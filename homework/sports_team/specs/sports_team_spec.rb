@@ -30,4 +30,16 @@ class TestTeams < MiniTest::Test
     assert_equal("Luis Suarez", team.team_players.last())
   end
 
+  def test_check_if_player_in_array
+    team = Team.new("Barcelona F.C.", ["Leo Messi", "Andres Iniesta", "Gerard Pique", "Sergi Roberto"], "Ernesto Valverde")
+    team.check_if_player_in_array("Marc-Andre ter Stegen")
+    assert_equal(false, team.team_players.include?("Marc-Andre ter Stegen"))
+  end
+
+  def test_add_points_to_team
+    team = Team.new("Barcelona F.C.", ["Leo Messi", "Andres Iniesta", "Gerard Pique", "Sergi Roberto"], "Ernesto Valverde")
+    team.add_points_to_team("win")
+    assert_equal(3, team.team_points())
+  end
+
 end
